@@ -167,9 +167,9 @@ public class DoABarrelRollClient implements ClientModInitializer {
 		if (player == null) return;
 
 		// smooth the look changes
-		pitch = pitchSmoother.smooth(pitch, sensitivity.pitch * delta);
-		yaw = yawSmoother.smooth(yaw, sensitivity.yaw * delta);
-		roll = rollSmoother.smooth(roll, sensitivity.roll * delta);
+		pitch = pitchSmoother.smooth(pitch, 100.0 / Math.max(1, sensitivity.pitchSmoothness) * delta);
+		yaw = yawSmoother.smooth(yaw, 100.0 / Math.max(1, sensitivity.yawSmoothness) * delta);
+		roll = rollSmoother.smooth(roll, 100.0 / Math.max(1, sensitivity.rollSmoothness) * delta);
 
 		// apply the look changes
 		if (ModConfig.INSTANCE.switchRollAndYaw) {
